@@ -43,8 +43,38 @@ public:
         buffer._length = 0;
         buffer._buf = nullptr;
     }
+
+    Buffer &operator=(const Buffer &buffer)
+    {
+        std::cout << "Buffer& operator= f " << std::endl;
+        if (this != &buffer) // 避免自身赋值
+        {
+            delete[] this->_buf;
+            this->_buf = new unsigned char[buffer._capacity];
+
+            this->_capacity = buffer._capacity;
+            this->_length = buffer._length;
+            std::copy(buffer._buf, buffer._buf + buffer._capacity, this->_buf);
+        }
+        return *this;
+    }
+
+    Buffer &operator=(const Buffer &&buffer) noexcept
+    {
+        std::cout << "Buffer&& opeartor= endition" << std::endl;
+        if (this == &buffer)
+        {
+            this->_capacity = buffer._capacity;
+            this->_length = buffer._length;
+
+            delete[] this->_buf;
+            this->_buf = buffer._buf;
+        }
+        return *this;
+    }
 };
 
 signed main()
 {
+    Buffer buffer(10);
 }

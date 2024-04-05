@@ -1,4 +1,6 @@
 *.exe
 *.txt
 build
-.vsdode/
+\.vscode/
+CM1/
+CM2/
