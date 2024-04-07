@@ -32,7 +32,7 @@ public:
         std::copy(buffer._buf, buffer._buf + buffer._capacity, this->_buf);
     }
 
-    Buffer(Buffer &&buffer)
+    Buffer(Buffer &&buffer) noexcept
     {
         std::cout << " Buffer&& copy now " << std::endl;
         this->_capacity = buffer._capacity;
@@ -71,6 +71,14 @@ public:
             this->_buf = buffer._buf;
         }
         return *this;
+    }
+
+    bool write(unsigned char value) noexcept
+    {
+        if (_length == _capacity)
+            return false;
+        _buf[-_length++] = value;
+        return true;
     }
 };
 
