@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 // template <class C>
@@ -9,22 +9,20 @@
 // }
 
 template <typename C, typename V>
-auto find_and_insert(C &Container, const V &targetval, const V &insertval)
-{
+auto find_and_insert(C& Container, const V& targetval, const V& insertval) {
     auto it = std::find(cbegin(Container), cend(Container), targetval);
     Container.insert(it, insertval);
 }
 
-signed main()
-{
+signed main() {
     std::vector<int> val = {1, 3, 24, 5};
 
-    auto it = std::find(val.cbegin(), val.cend(), 3); // cpp11 原生支持const迭代器
+    auto it =
+        std::find(val.cbegin(), val.cend(), 3);  // cpp11 原生支持const迭代器
 
     find_and_insert<std::vector<int>, int>(val, 3, 5);
 
-    for (auto v : val)
-    {
+    for (auto v : val) {
         std::cout << v << ' ';
     }
 }

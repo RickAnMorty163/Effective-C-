@@ -1,48 +1,36 @@
-#include <iostream>
 #include <compare>
 #include <format>
+#include <iostream>
 #include <limits>
 
 using std::format;
 using std::numeric_limits;
-namespace First::second
-{
-    double a{};
-    double b{};
-}
-namespace First::third
-{
-    double a{};
-    double b{};
-}
+namespace First::second {
+double a{};
+double b{};
+}  // namespace First::second
+namespace First::third {
+double a{};
+double b{};
+}  // namespace First::third
 
-enum class NFA : unsigned int
-{
+enum class NFA : unsigned int {
     True = 1,
     False = 0,
     Default = numeric_limits<unsigned int>::max()
 };
 
-enum class Mode
-{
-    Default,
-    Custom,
-    Standard
-};
-[[nodiscard("some things you are ignore")]] int func(int a)
-{
+enum class Mode { Default, Custom, Standard };
+[[nodiscard("some things you are ignore")]] int func(int a) {
     return a + 1;
 }
 
-[[maybe_unused]] auto func2()
-{
+[[maybe_unused]] auto func2() {
     std::cout << format("The function is not do some work ^_^");
 }
-signed
-main()
-{
+signed main() {
     double a{};
-    double *ptr{};
+    double* ptr{};
 
     if (ptr == nullptr && a == 0)
         std::cout << format("right, ptr=nullptr,a={}\n", a);
@@ -54,7 +42,8 @@ main()
 
     std::cout << format("Max double is {}\n", numeric_limits<double>::max());
     std::cout << format("Min double is {}\n", numeric_limits<double>::min());
-    std::cout << format("Lowest double is {}\n", numeric_limits<double>::lowest());
+    std::cout << format("Lowest double is {}\n",
+                        numeric_limits<double>::lowest());
 
     using NFA::True;
 
@@ -63,14 +52,13 @@ main()
 
     int value{0};
     Mode mode{Mode::Custom};
-    switch (mode)
-    {
+    switch (mode) {
         using enum Mode;
-    case Custom:
-        value = 84;
-        [[fallthrough]];
-    case Standard:
-    case Default:
-        std::cout << format("switch case end !\n");
+        case Custom:
+            value = 84;
+            [[fallthrough]];
+        case Standard:
+        case Default:
+            std::cout << format("switch case end !\n");
     }
 }

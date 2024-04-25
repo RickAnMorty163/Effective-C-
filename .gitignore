@@ -1,7 +1,7 @@
 *.exe
 *.txt
 build
-\.vscode/
+.vscode/
 SRC/
 Modules.cpp
 Cpp20Work.cpp

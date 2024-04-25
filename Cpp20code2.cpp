@@ -1,32 +1,28 @@
-#include <iostream>
+#include <array>
 #include <format>
 #include <initializer_list>
-#include <array>
+#include <iostream>
 #include <optional>
 
 using std::cout;
 using std::format;
 
-[[maybe_unused]] int makesum(std::initializer_list<int> values)
-{
+[[maybe_unused]] int makesum(std::initializer_list<int> values) {
     int total{};
     for (int value : values)
         total += value;
     return total;
 }
-std::optional<int> getData(bool giveIt)
-{
+std::optional<int> getData(bool giveIt) {
     if (giveIt)
         return 42;
     return {};
 }
 
-auto func(int a)
-{
+auto func(int a) {
     return ++a;
 }
-signed main()
-{
+signed main() {
     int Myarray[4]{1, 2, 4};
 
     const auto [x, y, z, b] = Myarray;
@@ -54,17 +50,13 @@ signed main()
 
     cout << format("data true {}\n", *data2);
 
-    if (data1.has_value())
-    {
+    if (data1.has_value()) {
         cout << format("data has value\n");
-    }
-    else
-    {
+    } else {
         cout << format("data has no value\n");
     }
 
-    struct st
-    {
+    struct st {
         std::string name = "unknown";
         int age = 0;
         unsigned long long id = 0;
