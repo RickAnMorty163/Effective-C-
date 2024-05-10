@@ -2,6 +2,8 @@
 *.txt
 build
 .vscode/
+.vs/
 SRC/
+DOC/
 Modules.cpp
 Cpp20Work.cpp
