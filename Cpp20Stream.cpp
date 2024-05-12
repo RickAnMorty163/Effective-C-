@@ -3,10 +3,12 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
-
-std::string readName1(std::istream& stream) {
+#include <cstring>
+std::string readName1(std::istream &stream)
+{
     std::string name;
-    while (stream) {
+    while (stream)
+    {
         int next = stream.get();
         if (!stream || next == std::char_traits<char>::eof())
             break;
@@ -14,28 +16,31 @@ std::string readName1(std::istream& stream) {
     }
     return name;
 }
-std::string readName2(std::ifstream& stream) {
+std::string readName2(std::ifstream &stream)
+{
     std::string name;
     char next;
-    while (stream.get(next))  // 使用另一个重载版本的get(char)，返回一个流的引用
+    while (stream.get(next)) // 使用另一个重载版本的get(char)，返回一个流的引用
         name += next;
     return name;
 }
 
-signed main() {
+signed main()
+{
     using namespace std;
     fstream fin;
     fin.open(
         "C:/Users/李想/Downloads/VScode_obj/LeetCode/Effective_cpp/test.txt",
         ios::in);
-    if (!fin) {
+    if (!fin)
+    {
         cerr << "get error" << endl;
     }
 
     fin.close();
 
     // write ，no use for << operater
-    const char* C_string = "this a C foramt stytle\n";
+    const char *C_string = "this a C foramt stytle\n";
     cout.write(C_string, strlen(C_string));
     // cerr stream
     cerr << "cerr stream is not write to memory for cache\n";
@@ -60,11 +65,11 @@ signed main() {
          << endl;
     cout << "set db1 presion to " << setprecision(3) << db1 << endl;
     cout << "set db2 presion to" << setprecision(2) << db2 << endl;
-    cout << format("{:^+4.3}\n", db1);  // 等效format
+    cout << format("{:^+4.3}\n", db1); // 等效format
 
     // time
     time_t t_t{time(nullptr)};
-    tm* t{localtime(&t_t)};
+    tm *t{localtime(&t_t)};
     cout << "this should be the current date and time"
          << "format according to your location: " << put_time(t, "%c") << '\n';
     cout.flush();

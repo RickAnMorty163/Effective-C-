@@ -18,7 +18,7 @@ template <typename T>
 concept Incrementable = requires(T x) {
     x++;
     ++x;
-};  // T x必须支持前缀自增和后缀自增
+}; // T x必须支持前缀自增和后缀自增
 
 // concept同样支持使用逻辑运算符嵌套
 template <typename T>
@@ -26,13 +26,13 @@ concept UnionCheck = SetSize<T> && Incrementable<T>;
 
 //  类型require
 template <typename T>
-concept Jugement = requires { typename T::value; };  // 检查T是否包含value成员
+concept Jugement = requires { typename T::value; }; // 检查T是否包含value成员
 
 // 复合require
 //{expression} noexcept -> type-constraint , 后两项均是可选的
 template <typename T>
 concept CheckSwap = requires(T x, T y) {
-    { x.swap(y) } noexcept;  // 检查x.swap(y)是否是noexcept的方法
+    { x.swap(y) } noexcept; // 检查x.swap(y)是否是noexcept的方法
 };
 
 // 方法类型转换判断
@@ -49,7 +49,7 @@ concept CheckSwap = requires(T x, T y) {
 // 嵌套的require
 template <typename T>
 concept CheckSize_Operator = requires(T x) {
-    sizeof(T) = 4;
+    // sizeof(T) = 4;
     x++;
     x--;
     ++x;
@@ -62,18 +62,19 @@ concept CheckSize_Operator = requires(T x) {
 
 template <typename T>
 concept IsConventible2Bool =
-    convertible_to<T, bool>;  // 检查T是否可以转换为bool类型
+    convertible_to<T, bool>; // 检查T是否可以转换为bool类型
 
 template <typename T>
 concept DefalultAndCopyConstructible =
     default_initializable<T> &&
-    copy_constructible<T>;  // T既可以默认构造，也可以拷贝构造
+    copy_constructible<T>; // T既可以默认构造，也可以拷贝构造
 
 // 模板类型约束
 
 // method 1 直接给模板参数T添加约束
 template <UnionCheck T>
-void Change(T x) {
+void Change(T x)
+{
     std::cout << "T is a UnionCheck type" << std::endl;
     std::cout << "T x++ " << x++ << std::endl;
     std::cout << "T ++x " << ++x << std::endl;
@@ -84,7 +85,8 @@ void Change(T x) {
 // method2 使用requires子句添加约束
 template <typename T>
     requires UnionCheck<T>
-void hello(T x) {
+void hello(T x)
+{
     std::cout << "hello , " << x << " world ! " << std::endl;
 }
 
@@ -92,7 +94,7 @@ void hello(T x) {
 template <typename T>
 int Additon(T x)
     requires requires(
-        T x)  // 注意是两个requires,requires子句也可以放在函数头之后
+        T x) // 注意是两个requires,requires子句也可以放在函数头之后
 {
     x++;
     ++x;
@@ -103,7 +105,8 @@ int Additon(T x)
     ++x;
     return x;
 }
-signed main() {
+signed main()
+{
     // Incrementable auto a  {make_unique<int>(42)};
 
     // concept对auto的类型推导进行约束
