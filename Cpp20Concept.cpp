@@ -6,7 +6,6 @@
  * @version 0.1.0
  * @date 2024-4-26
  */
-#include <concepts>
 #include <iostream>
 using namespace std;
 
@@ -72,9 +71,7 @@ concept DefalultAndCopyConstructible =
 // 模板类型约束
 
 // method 1 直接给模板参数T添加约束
-template <UnionCheck T>
-void Change(T x)
-{
+template <UnionCheck T> void Change(T x) {
     std::cout << "T is a UnionCheck type" << std::endl;
     std::cout << "T x++ " << x++ << std::endl;
     std::cout << "T ++x " << ++x << std::endl;
@@ -85,8 +82,7 @@ void Change(T x)
 // method2 使用requires子句添加约束
 template <typename T>
     requires UnionCheck<T>
-void hello(T x)
-{
+void hello(T x) {
     std::cout << "hello , " << x << " world ! " << std::endl;
 }
 
@@ -105,8 +101,7 @@ int Additon(T x)
     ++x;
     return x;
 }
-signed main()
-{
+signed main() {
     // Incrementable auto a  {make_unique<int>(42)};
 
     // concept对auto的类型推导进行约束
