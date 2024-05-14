@@ -1,4 +1,3 @@
-#include <math.h>
 #include <chrono>
 #include <iostream>
 using std::cout;
@@ -6,9 +5,9 @@ using std::cout;
 class Point {
     double x = 0, y = 0;
 
-   public:
+  public:
     constexpr Point() = default;
-    constexpr Point(const Point&) = default;
+    constexpr Point(const Point &) = default;
     constexpr Point(double x0, double y0) : x(x0), y(y0) {}
     constexpr double getX() { return x; }
     constexpr double getY() { return y; }
@@ -16,7 +15,7 @@ class Point {
     constexpr void setX(double x_vlue) noexcept { x = x_vlue; }
     constexpr void setY(double y_vlue) noexcept { y = y_vlue; }
 
-    constexpr Point reflection(const Point& p) {
+    constexpr Point reflection(const Point &p) {
         Point res;
         res.setX(-res.getX());
         res.setY(-res.getY());

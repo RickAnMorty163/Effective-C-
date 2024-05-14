@@ -1,30 +1,24 @@
 #include <iostream>
-#include <string>
-#include <vector>
 
-class Buffer
-{
-private:
+class Buffer {
+  private:
     unsigned char *_buf;
     int _capacity;
     int _length;
 
-public:
+  public:
     // explicit关键字：阻止隐式转换的发生
-    explicit Buffer(int capacity) : _capacity(capacity), _length(0)
-    {
+    explicit Buffer(int capacity) : _capacity(capacity), _length(0) {
         std::cout << "Buffer (int) capacity " << std::endl;
         // 分配_buf缓冲区
         _buf = capacity == 0 ? nullptr : new unsigned char[capacity]{};
     }
-    ~Buffer()
-    {
+    ~Buffer() {
         std::cout << "~ Buffer " << std::endl;
         delete[] _buf;
     }
 
-    Buffer(const Buffer &buffer)
-    {
+    Buffer(const Buffer &buffer) {
         std::cout << "Copy Buffer now " << std::endl;
         this->_capacity = buffer._capacity;
         this->_length = buffer._length;
@@ -32,8 +26,7 @@ public:
         std::copy(buffer._buf, buffer._buf + buffer._capacity, this->_buf);
     }
 
-    Buffer(Buffer &&buffer) noexcept
-    {
+    Buffer(Buffer &&buffer) noexcept {
         std::cout << " Buffer&& copy now " << std::endl;
         this->_capacity = buffer._capacity;
         this->_length = buffer._length;
@@ -44,8 +37,7 @@ public:
         buffer._buf = nullptr;
     }
 
-    Buffer &operator=(const Buffer &buffer)
-    {
+    Buffer &operator=(const Buffer &buffer) {
         std::cout << "Buffer& operator= f " << std::endl;
         if (this != &buffer) // 避免自身赋值
         {
@@ -59,11 +51,9 @@ public:
         return *this;
     }
 
-    Buffer &operator=(const Buffer &&buffer) noexcept
-    {
+    Buffer &operator=(const Buffer &&buffer) noexcept {
         std::cout << "Buffer&& opeartor= endition" << std::endl;
-        if (this == &buffer)
-        {
+        if (this == &buffer) {
             this->_capacity = buffer._capacity;
             this->_length = buffer._length;
 
@@ -73,8 +63,7 @@ public:
         return *this;
     }
 
-    bool write(unsigned char value) noexcept
-    {
+    bool write(unsigned char value) noexcept {
         if (_length == _capacity)
             return false;
         _buf[-_length++] = value;
@@ -82,7 +71,4 @@ public:
     }
 };
 
-signed main()
-{
-    Buffer buffer(10);
-}
+signed main() { Buffer buffer(10); }
