@@ -1,4 +1,3 @@
-#include <compare>
 #include <format>
 #include <iostream>
 #include <limits>
@@ -8,11 +7,11 @@ using std::numeric_limits;
 namespace First::second {
 double a{};
 double b{};
-}  // namespace First::second
+} // namespace First::second
 namespace First::third {
 double a{};
 double b{};
-}  // namespace First::third
+} // namespace First::third
 
 enum class NFA : unsigned int {
     True = 1,
@@ -21,16 +20,14 @@ enum class NFA : unsigned int {
 };
 
 enum class Mode { Default, Custom, Standard };
-[[nodiscard("some things you are ignore")]] int func(int a) {
-    return a + 1;
-}
+[[nodiscard("some things you are ignore")]] int func(int a) { return a + 1; }
 
 [[maybe_unused]] auto func2() {
     std::cout << format("The function is not do some work ^_^");
 }
 signed main() {
     double a{};
-    double* ptr{};
+    double *ptr{};
 
     if (ptr == nullptr && a == 0)
         std::cout << format("right, ptr=nullptr,a={}\n", a);
@@ -54,11 +51,11 @@ signed main() {
     Mode mode{Mode::Custom};
     switch (mode) {
         using enum Mode;
-        case Custom:
-            value = 84;
-            [[fallthrough]];
-        case Standard:
-        case Default:
-            std::cout << format("switch case end !\n");
+    case Custom:
+        value = 84;
+        [[fallthrough]];
+    case Standard:
+    case Default:
+        std::cout << format("switch case end !\n");
     }
 }

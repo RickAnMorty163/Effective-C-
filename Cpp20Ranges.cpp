@@ -4,11 +4,6 @@
 #include <vector>
 using namespace std::string_literals;
 using std::begin;
-/**
- * @author Li Xiang
- * @date 2024 5 13
- *
- */
 
 /**
  * @brief print the ranges than it can be iteratorial

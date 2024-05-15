@@ -88,4 +88,7 @@ signed main() {
     // tips: 回收vector内存->与空的临时vector匿名对象交换
     std::vector<int> vec_big(1000);
     std::vector<int>().swap(vec_big);
+
+    // 避免使用vector<bool> ，因为这是低效的
+    std::vector<bool> vec_bool;
 }
