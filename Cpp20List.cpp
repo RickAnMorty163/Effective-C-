@@ -60,5 +60,6 @@ int main(int argc, char const *argv[]) {
     // 特别的,forward_list提供了一个指向头结点的before_begin()迭代器用于构建迭代范围
     // before_begin()+1的效果相当于begin()返回的迭代器
     auto head_iter = l0.before_begin();
-    std::cout << std::format("head_iter(first value) is {}\n", *(++head_iter));
+    std::cout << std::format("head_iter to next node (first value) is {}\n",
+                             *(++head_iter));
 }
